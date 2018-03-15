@@ -18,10 +18,16 @@ ui <- fluidPage(
                      step = 0.001),
          sliderInput("slope",
                      "Slope:",
-                     min = -2,
-                     max = 2,
+                     min = 0,
+                     max = 1.5,
                      value = 0.5452,
-                     step = 0.001)
+                     step = 0.001),
+         sliderInput("zoom",
+                     "zoom out:",
+                     min = 0,
+                     max = 5,
+                     value = 0,
+                     step = 1)
       ),
       
       # Show a plot of the generated distribution
@@ -45,7 +51,11 @@ server <- function(input, output) {
             title = paste("Residual sum of squares:", RSS), 
             subtitle = paste("Residual sum of squares from linear regression:", RSS_lm, "with intercept = 0.7038 and slope = 0.5452"),
             caption = "data from [Huttenlocher, Vasilyeva, Cymerman, Levine 2002]")+
-       geom_abline(slope = input$slope, intercept = input$intercept)
+       geom_abline(slope = input$slope, intercept = input$intercept)+
+       scale_x_continuous(limits = c(-input$zoom*sd(df$child)+min(df$mother), 
+                                     input$zoom*sd(df$child)+max(df$mother)))+
+       scale_y_continuous(limits = c(-input$zoom*sd(df$child)+min(df$child), 
+                                     input$zoom*sd(df$child)+max(df$child)))
    })
 }
 
