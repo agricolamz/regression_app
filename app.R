@@ -46,8 +46,8 @@ server <- function(input, output) {
      ggplot(data = df, aes(mother, child))+
        geom_point()+
        theme_bw()+
-       labs(x = "number of NP per utterance (mother speech)",
-            y = "number of NP per utterance (mother speech)",
+       labs(x = "number of NP per utterance (mothers' speech)",
+            y = "number of NP per utterance (children's speech)",
             title = paste("Residual sum of squares:", RSS), 
             subtitle = paste("Residual sum of squares from linear regression:", RSS_lm, "with intercept = 0.7038 and slope = 0.5452"),
             caption = "data from [Huttenlocher, Vasilyeva, Cymerman, Levine 2002]")+
