@@ -51,6 +51,7 @@ server <- function(input, output) {
             title = paste("Residual sum of squares:", RSS), 
             subtitle = paste("Residual sum of squares from linear regression:", RSS_lm, "with intercept = 0.7038 and slope = 0.5452"),
             caption = "data from [Huttenlocher, Vasilyeva, Cymerman, Levine 2002]")+
+       geom_abline(slope = 0.5452, intercept = 0.7038, color = "lightblue", size = 2)+
        geom_abline(slope = input$slope, intercept = input$intercept)+
        scale_x_continuous(limits = c(-input$zoom*sd(df$child)+min(df$mother), 
                                      input$zoom*sd(df$child)+max(df$mother)))+
